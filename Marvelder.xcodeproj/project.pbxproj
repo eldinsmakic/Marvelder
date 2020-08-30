@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03254634C85B7F86B04055FF /* Pods_Marvelder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84697446BCD464ADAE0E97B8 /* Pods_Marvelder.framework */; };
 		991E108624F5BBD9004024AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E108524F5BBD9004024AF /* AppDelegate.swift */; };
 		991E108824F5BBD9004024AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E108724F5BBD9004024AF /* SceneDelegate.swift */; };
 		991E108B24F5BBD9004024AF /* Marvelder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 991E108924F5BBD9004024AF /* Marvelder.xcdatamodeld */; };
@@ -16,6 +17,7 @@
 		991E109524F5BBDC004024AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991E109324F5BBDC004024AF /* LaunchScreen.storyboard */; };
 		991E10A024F5BBDD004024AF /* MarvelderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E109F24F5BBDD004024AF /* MarvelderTests.swift */; };
 		991E10AB24F5BBDD004024AF /* MarvelderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E10AA24F5BBDD004024AF /* MarvelderUITests.swift */; };
+		991E10BA24F6DEEF004024AF /* SwiftMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E10B924F6DEEE004024AF /* SwiftMD5.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7351480D2DB1B581B7313AE0 /* Pods-Marvelder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelder.release.xcconfig"; path = "Target Support Files/Pods-Marvelder/Pods-Marvelder.release.xcconfig"; sourceTree = "<group>"; };
+		84697446BCD464ADAE0E97B8 /* Pods_Marvelder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvelder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		991E108224F5BBD9004024AF /* Marvelder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvelder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		991E108524F5BBD9004024AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		991E108724F5BBD9004024AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		991E10A624F5BBDD004024AF /* MarvelderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		991E10AA24F5BBDD004024AF /* MarvelderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelderUITests.swift; sourceTree = "<group>"; };
 		991E10AC24F5BBDD004024AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		991E10B924F6DEEE004024AF /* SwiftMD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftMD5.swift; sourceTree = "<group>"; };
+		E147BDE8C172D226F60D8C17 /* Pods-Marvelder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelder.debug.xcconfig"; path = "Target Support Files/Pods-Marvelder/Pods-Marvelder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03254634C85B7F86B04055FF /* Pods_Marvelder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32E3FE1D710E80A13AF218CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E147BDE8C172D226F60D8C17 /* Pods-Marvelder.debug.xcconfig */,
+				7351480D2DB1B581B7313AE0 /* Pods-Marvelder.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		950A406623D4BEBD0DBD3C8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84697446BCD464ADAE0E97B8 /* Pods_Marvelder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		991E107924F5BBD9004024AF = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +109,8 @@
 				991E109E24F5BBDD004024AF /* MarvelderTests */,
 				991E10A924F5BBDD004024AF /* MarvelderUITests */,
 				991E108324F5BBD9004024AF /* Products */,
+				32E3FE1D710E80A13AF218CB /* Pods */,
+				950A406623D4BEBD0DBD3C8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +127,8 @@
 		991E108424F5BBD9004024AF /* Marvelder */ = {
 			isa = PBXGroup;
 			children = (
+				992A427F24FBB4870082BF01 /* Models */,
+				991E10B824F6DED4004024AF /* md5 */,
 				991E108524F5BBD9004024AF /* AppDelegate.swift */,
 				991E108724F5BBD9004024AF /* SceneDelegate.swift */,
 				991E108C24F5BBD9004024AF /* ContentView.swift */,
@@ -139,6 +167,21 @@
 			path = MarvelderUITests;
 			sourceTree = "<group>";
 		};
+		991E10B824F6DED4004024AF /* md5 */ = {
+			isa = PBXGroup;
+			children = (
+				991E10B924F6DEEE004024AF /* SwiftMD5.swift */,
+			);
+			path = md5;
+			sourceTree = "<group>";
+		};
+		992A427F24FBB4870082BF01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,9 +189,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 991E10AF24F5BBDD004024AF /* Build configuration list for PBXNativeTarget "Marvelder" */;
 			buildPhases = (
+				2E2A91C36BC5226401F7EDE6 /* [CP] Check Pods Manifest.lock */,
 				991E107E24F5BBD9004024AF /* Sources */,
 				991E107F24F5BBD9004024AF /* Frameworks */,
 				991E108024F5BBD9004024AF /* Resources */,
+				1B2BB99DC35124F5EAEFFDED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,6 +310,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B2BB99DC35124F5EAEFFDED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marvelder/Pods-Marvelder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Marvelder/Pods-Marvelder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Marvelder/Pods-Marvelder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E2A91C36BC5226401F7EDE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Marvelder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		991E107E24F5BBD9004024AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -273,6 +360,7 @@
 				991E108624F5BBD9004024AF /* AppDelegate.swift in Sources */,
 				991E108824F5BBD9004024AF /* SceneDelegate.swift in Sources */,
 				991E108D24F5BBD9004024AF /* ContentView.swift in Sources */,
+				991E10BA24F6DEEF004024AF /* SwiftMD5.swift in Sources */,
 				991E108B24F5BBD9004024AF /* Marvelder.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +524,7 @@
 		};
 		991E10B024F5BBDD004024AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E147BDE8C172D226F60D8C17 /* Pods-Marvelder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -456,6 +545,7 @@
 		};
 		991E10B124F5BBDD004024AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7351480D2DB1B581B7313AE0 /* Pods-Marvelder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
