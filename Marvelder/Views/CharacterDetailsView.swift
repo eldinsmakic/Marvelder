@@ -11,37 +11,27 @@ import SwiftUI
 struct CharacterDetailsView: View {
     @State var character: MarvelCharacter
     var body: some View {
-            VStack {
+        ScrollView(.vertical) {
                     VStack {
                         AsyncImage(
                             url: character.thumbnail!.url,
                             placeholder: Text("Loading ...")
-                        ).frame(alignment: .top)
+                        ).frame(width: .infinity, height: 450, alignment: .top)
                         HStack {
                             Text(character.name ?? "")
                                 .font(.title)
                                 .bold()
                             Spacer()
-                        }.padding(.bottom)
+                        }.padding([.bottom, .leading , .trailing], 8)
+
                         Text(character.description ?? "")
-                    }.padding(.bottom)
+                            .padding([.trailing, .leading])
+
+                    }.padding(.bottom, 32)
                     VStack {
-                        HStack {
-                            Text("Comics dispo: 123")
-                                .font(.title2)
-                                .bold()
-                            Spacer()
-                        }
-    //                    List {
-    //                        Section {
-    //                            Text("hehe")
-    //                        }
-    //                    }
-                    }
-                    .background(Color(UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)))
-                    .cornerRadius(15)
-                    .shadow(radius: 20)
-            }.edgesIgnoringSafeArea(.top)
+                        ComicsListView(comics: character.comics)
+                    }.frame(height: .infinity, alignment: .leading)
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -54,7 +44,7 @@ struct CharacterDetails_Previews: PreviewProvider {
             thumbnail: MarvelImage(
                 path: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b",
                 ext: "jpg"
-            )
+            ), comics: Fake.Comic.comics
         ))
     }
 }

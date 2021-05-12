@@ -45,7 +45,7 @@ struct MarvelCharacter: Codable {
     let name: String?
     let description: String?
     let thumbnail: MarvelImage?
-
+    let comics: Comics
 }
 
 struct MarvelImage: Codable {

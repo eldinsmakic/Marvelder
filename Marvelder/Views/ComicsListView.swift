@@ -13,16 +13,16 @@ struct ComicsListView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Comics").font(.title)
-                    .padding(.leading, 16)
+                Text("Comics")
+                    .font(.title)
+                    .bold()
+                    .padding(.leading, 8)
                 Spacer()
             }
             VStack {
-                List {
                     ForEach(comics.items) { item in
                         ComicsCellView(id: item.comicId ?? "12345")
                     }
-                }
             }
         }
     }
@@ -30,11 +30,7 @@ struct ComicsListView: View {
 
 struct ComicsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ComicsListView(comics: .init(available: 10, items: [
-            ComicsRessourceItem(ressouceURI: "http://gateway.marvel.com/v1/public/comics/62304", name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"),
-            ComicsRessourceItem(ressouceURI: "http://gateway.marvel.com/v1/public/comics/78503", name: "2099 Alpha (2019) #1"),
-            ComicsRessourceItem(ressouceURI: "http://gateway.marvel.com/v1/public/comics/60151", name: "A YEAR OF MARVELS TPB (Trade Paperback)")
-         ]))
+        ComicsListView(comics: Fake.Comic.comics)
     }
 }
 

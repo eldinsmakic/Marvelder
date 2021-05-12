@@ -11,7 +11,26 @@ enum Fake {
 }
 
 extension Fake {
+
     enum Comic {
+
+        static let comics = Comics(
+            available: 10,
+            items: [
+            ComicsRessourceItem(
+                ressouceURI: "http://gateway.marvel.com/v1/public/comics/62304",
+                name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
+            ),
+            ComicsRessourceItem(
+                ressouceURI: "http://gateway.marvel.com/v1/public/comics/78503",
+                name: "2099 Alpha (2019) #1"
+            ),
+            ComicsRessourceItem(
+                ressouceURI: "http://gateway.marvel.com/v1/public/comics/60151",
+                name: "A YEAR OF MARVELS TPB (Trade Paperback)"
+            )
+         ])
+
         static let marvelComicCell = MarvelComicCell(
             id: 4,
             title: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1",
