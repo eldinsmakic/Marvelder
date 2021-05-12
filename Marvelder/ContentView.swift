@@ -154,7 +154,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if self.post.isPosted {
-                CharacterDetails(character: post.character)
+                CharacterDetailsView(character: post.character)
             }
         }.onAppear {
             self.post.fetch()
