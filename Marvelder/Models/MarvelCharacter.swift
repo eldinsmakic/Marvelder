@@ -21,9 +21,16 @@ struct Comics: Codable {
     let items: [ComicsRessourceItem]
 }
 
-struct ComicsRessourceItem: Codable {
+struct ComicsRessourceItem: Codable, Identifiable {
+    public var id = UUID()
     let ressouceURI: String
     let name: String
+
+    var comicId: String? {
+        guard let lastSlash = ressouceURI.lastIndex(of: "/") else { return nil }
+
+        return String(ressouceURI[lastSlash...])
+    }
 }
 
 public struct MarvelComicCell: Codable, Identifiable {
