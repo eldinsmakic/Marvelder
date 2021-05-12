@@ -11,65 +11,6 @@ import Combine
 import Foundation
 import SwiftyJSON
 
-class ImageLoader: ObservableObject {
-    @Published var image: UIImage?
-    private let url: URL
-
-    init(url: URL) {
-        self.url = url
-    }
-
-    private var cancellable: AnyCancellable?
-    
-    deinit {
-        cancellable?.cancel()
-    }
-
-    func load() {
-        cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.image, on: self)
-    }
-    
-    func cancel() {
-        cancellable?.cancel()
-    }
-}
-
-struct AsyncImage<Placeholder: View>: View {
-    @ObservedObject private var loader: ImageLoader
-    private let placeholder: Placeholder?
-    
-    init(url: URL, placeholder: Placeholder? = nil) {
-        loader = ImageLoader(url: url)
-        self.placeholder = placeholder
-    }
-
-    var body: some View {
-        image
-            .onAppear(perform: loader.load)
-            .onDisappear(perform: loader.cancel)
-    }
-    
-    private var image: some View {
-        Group {
-            if loader.image != nil {
-                Image(uiImage: loader.image!)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-            } else {
-                placeholder
-            }
-        }
-    }
-}
-
-
-
-
-
 final class PostsViewModel: ObservableObject {
     @Published var posts: [String: Any] = [:]
     @Published var character: MarvelCharacter!
@@ -112,42 +53,6 @@ final class PostsViewModel: ObservableObject {
     }
 }
 
-
-class ApiCall {
-    
-    init() {
-        let privateKey = "e801f6e96e40567e1d04399061056c0b370f5a52"
-        let publicKey = "7d94e84bcd551a305b50d27409313edf"
-        let timestamp = Date().timeIntervalSinceNow.bitPattern
-
-        let data = "\(timestamp)\(privateKey)\(publicKey)"
-        let hash = MD5(string: data)
-
-        let md5Hex = hash.map { String(format: "%02hhx", $0) }.joined()
-        print("md5Hex: \(md5Hex)")
-
-
-
-        let url = URL(string: "https://gateway.marvel.com:443/v1/public/characters?ts=\(timestamp)&apikey=\(publicKey)&hash=\(md5Hex)")!
-        
-        print(url)
-
-        var cancellable = URLSession.shared
-        .dataTaskPublisher(for: url)
-        .tryMap() { element -> Data in
-            guard let httpResponse = element.response as? HTTPURLResponse,
-                httpResponse.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
-            return element.data
-            }
-        .receive(on: DispatchQueue.main)
-        .sink(receiveCompletion: { print ("Received completion: \($0).") },
-              receiveValue: { user in print ("Received user: \(user).")})
-    }
-}
-
-
 struct ContentView: View {
     
     @ObservedObject var post = PostsViewModel()
@@ -156,7 +61,6 @@ struct ContentView: View {
             if self.post.isPosted {
                 CharacterDetailsView(character: post.character)
             }
-            ComicsCellView(id: "62304")
         }.onAppear {
             self.post.fetch()
         }
