@@ -15,6 +15,13 @@ struct MarvelComic: Codable, Identifiable {
     let thumbnail: MarvelImage?
 }
 
+struct MarvelComicCell: Codable, Identifiable {
+    let id: Int
+    let title: String
+    let description: String
+    let thumbnail: MarvelImage?
+}
+
 struct MarvelCharacter: Codable {
     let id: Int?
     let name: String?
