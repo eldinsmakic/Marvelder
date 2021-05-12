@@ -7,8 +7,8 @@
 //
 import Foundation
 
-struct MarvelComic: Codable, Identifiable {
-    let id: Int
+public struct MarvelComic: Codable, Identifiable {
+    public let id: Int
     let title: String
     let variantDescription: String
     let description: String
@@ -26,10 +26,10 @@ struct ComicsRessourceItem: Codable {
     let name: String
 }
 
-struct MarvelComicCell: Codable, Identifiable {
-    let id: Int
+public struct MarvelComicCell: Codable, Identifiable {
+    public let id: Int
     let title: String
-    let description: String
+    let description: String?
     let thumbnail: MarvelImage?
 }
 
@@ -59,3 +59,4 @@ struct MarvelImage: Codable {
 
     var url: URL { return URL(string: "\(path)/standard_xlarge.\(ext)")! }
 }
+

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct ComicsListView: View {
+//    @ObservedObject var viewModel = ComicsListViewModel()
     @State var comics: Comics
     var body: some View {
         VStack {
@@ -20,7 +21,7 @@ struct ComicsListView: View {
             VStack {
                 List {
                     ForEach((1...10), id: \.self) { _ in
-                        ComicsCellView(comicCell: Fake.Comic.marvelComicCell)
+                        ComicsCellView(id: "viewModel")
                     }
                 }
             }

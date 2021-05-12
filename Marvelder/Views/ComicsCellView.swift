@@ -7,40 +7,48 @@
 //
 
 import SwiftUI
+import Combine
+
+final class ComicCellViewModel: ObservableObject {
+    let repo = ComicCellRepositoryMarvel.shared
+    @Published var comicCell = Fake.Comic.marvelComicCell
+    var cancellationToken: AnyCancellable?
+}
 
 struct ComicsCellView: View {
-    @State var comicCell: MarvelComicCell
+    let id: String
+    @ObservedObject var viewModel = ComicCellViewModel()
+
     var body: some View {
             GeometryReader { geo in
-                VStack {
-                    Text(comicCell.title).font(.title)
-                        .lineLimit(2)
-                        .padding([.leading, .bottom, .trailing])
-                        .frame(height: 90, alignment: .bottom)
-                    HStack {
-                        AsyncImage(url: comicCell.thumbnail!.url, placeholder: Text("Loading ..."))
-                            .frame(width: geo.size.width/3 , alignment: .center)
-                        Text(comicCell.description).font(.body)
-                            .padding(.trailing)
-                            .frame(alignment: .bottom)
+                    VStack {
+                        Text(viewModel.comicCell.title).font(.title3)
+                            .lineLimit(2)
+                            .padding([.leading, .bottom, .trailing], 8)
+                            .frame(height: 90, alignment: .bottom)
+                        HStack {
+                            AsyncImage(url: viewModel.comicCell.thumbnail!.url, placeholder: Text("Loading ..."))
+                                .frame(width: geo.size.width/3 , alignment: .center)
+                            Text(viewModel.comicCell.description ?? "No description").font(.body)
+                                .padding(.trailing)
+                                .frame(alignment: .bottom)
+                        }
                     }
-                }
             }.frame(width: .infinity, height: 220, alignment: .leading)
+            .onAppear {
+                viewModel.cancellationToken = viewModel.repo.get(withId: id)
+                    .sink { error in
+                        print(error)
+                } receiveValue: { data in
+                    viewModel.comicCell = data
+                }
+            }
     }
 }
 
 struct ComicsCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ComicsCellView(comicCell:
-                        MarvelComicCell(
-                            id: 4,
-                            title: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1",
-                            description: "Spider-Man's Clone Saga has spun completely out of control! There's only one team that can save the wall-crawler now: the Marvel editors! Bob Harras, Ralph Macchio, Tom Brevoort, and more put their heads together to see if ANYTHING can get Spidey out of this doppelganger debacle!",
-                            thumbnail: MarvelImage(
-                                path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
-                                ext: "jpg")
-                        )
-        )
+        ComicsCellView(id: "78503")
     }
 }
 

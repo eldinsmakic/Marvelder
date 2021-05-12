@@ -156,6 +156,7 @@ struct ContentView: View {
             if self.post.isPosted {
                 CharacterDetailsView(character: post.character)
             }
+            ComicsCellView(id: "62304")
         }.onAppear {
             self.post.fetch()
         }
