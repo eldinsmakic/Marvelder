@@ -12,16 +12,20 @@ struct ComicsCellView: View {
     @State var comicCell: MarvelComicCell
     var body: some View {
             GeometryReader { geo in
-            HStack {
-                AsyncImage(url: comicCell.thumbnail!.url, placeholder: Text("Loading ..."))
-                    .frame(width: geo.size.width/4, height: geo.size.height, alignment: .center)
                 VStack {
-                    Text(comicCell.title).font(.title3)
-                        .padding(.bottom)
-                    Text(comicCell.description).font(.body)
+                    Text(comicCell.title).font(.title)
+                        .lineLimit(2)
+                        .padding([.leading, .bottom, .trailing])
+                        .frame(height: 90, alignment: .bottom)
+                    HStack {
+                        AsyncImage(url: comicCell.thumbnail!.url, placeholder: Text("Loading ..."))
+                            .frame(width: geo.size.width/3 , alignment: .center)
+                        Text(comicCell.description).font(.body)
+                            .padding(.trailing)
+                            .frame(alignment: .bottom)
+                    }
                 }
-            }.frame(width: .infinity, height: 200, alignment: .leading)
-    }
+            }.frame(width: .infinity, height: 220, alignment: .leading)
     }
 }
 
