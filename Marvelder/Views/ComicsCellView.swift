@@ -14,6 +14,16 @@ final class ComicCellViewModel: ObservableObject {
     @Published var comicCell = Fake.Comic.marvelComicCell
     @Published var isLoad = false
     var cancellationToken: AnyCancellable?
+
+    public func getData(fromId id: String) {
+        cancellationToken = repo.get(withId: id)
+            .sink { error in
+                print(error)
+        } receiveValue: { data in
+            self.comicCell = data
+            self.isLoad = true
+        }
+    }
 }
 
 struct ComicsCellView: View {
@@ -22,31 +32,24 @@ struct ComicsCellView: View {
 
     var body: some View {
             GeometryReader { geo in
+                if viewModel.isLoad {
                     VStack {
                         Text(viewModel.comicCell.title).font(.title3)
                             .lineLimit(2)
                             .padding([.leading, .bottom, .trailing], 8)
                             .frame(height: 90, alignment: .bottom)
                         HStack {
-                            if viewModel.isLoad {
+
                                 AsyncImage(url: viewModel.comicCell.thumbnail!.url, placeholder: Text("Loading ..."))
                                     .frame(width: geo.size.width/3 , alignment: .center)
-                            }
                             Text(viewModel.comicCell.description ?? "No description").font(.body)
                                 .padding(.trailing)
                                 .frame(alignment: .bottom)
                         }
                     }
-            }.frame(height: 220, alignment: .leading)
-            .onAppear {
-                viewModel.cancellationToken = viewModel.repo.get(withId: id)
-                    .sink { error in
-                        print(error)
-                } receiveValue: { data in
-                    viewModel.comicCell = data
-                    viewModel.isLoad = true
                 }
-            }
+            }.frame(width: 400, height: 220, alignment: .leading)
+            .onAppear(perform: { viewModel.getData(fromId: id) })
     }
 }
 
