@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct ComicsListView: View {
+
     @State var comics: Comics
+
     var body: some View {
         VStack {
             HStack {
@@ -22,7 +24,8 @@ struct ComicsListView: View {
             ScrollView(.horizontal, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
                 HStack(spacing: 10) {
                         ForEach(comics.items!) { item in
-                            ComicsCellView(id: item.comicId ?? "12345")
+//                            ComicsCellView(id: item.comicId ?? "12345")
+                            ComicsCellViewFake()
                         }
                 }
             }).frame(height: 200, alignment: .center)
