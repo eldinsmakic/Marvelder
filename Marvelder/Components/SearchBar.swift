@@ -34,11 +34,30 @@ struct SearchBar: View {
                 }) {
                     Text("Cancel")
                 }
-                .padding(.trailing, 10)
+                .padding(.trailing, 12)
                 .transition(.move(edge: .trailing))
                 .animation(.default)
             }
         }
+        .frame(width: UIScreen.main.bounds.size.width - (8*2))
+        .overlay(
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 12)
+
+                if isEditing {
+                    Button(action: {
+                        self.text = ""
+                    }) {
+                        Image(systemName: "multiply.circle.fill")
+                            .foregroundColor(.gray)
+                            .padding(.trailing, 100)
+                    }
+                }
+            }
+        )
     }
 }
 
