@@ -11,6 +11,7 @@ import SwiftUI
 
 class ImageLoader: ObservableObject {
     @Published var image: UIImage?
+    @Published var isLoad = false
     private let url: URL
 
     init(url: URL) {
@@ -18,17 +19,42 @@ class ImageLoader: ObservableObject {
     }
 
     private var cancellable: AnyCancellable?
-
+    private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
+    private var disposeBag = Set<AnyCancellable>()
     deinit {
         cancellable?.cancel()
     }
 
     func load() {
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
+            .subscribe(on: Self.imageProcessingQueue)
+            .map {
+                return UIImage(data: $0.data)
+            }
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-            .assign(to: \.image, on: self)
+//            .handleEvents(receiveSubscription: { sub in
+//                print("receive subscription \(sub) test")
+//            }, receiveOutput: { _ in
+//                print("receive output t est")
+//            }, receiveCompletion: { completio in
+//                print("receive completion \(completio) test")
+//            }, receiveCancel: {
+//                print("receive cancel test")
+//            }, receiveRequest: { demand in
+//                print("receive demand \(demand) test")
+//            })
+            .eraseToAnyPublisher()
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { uiimage in
+                self.image = uiimage
+                self.isLoad = true
+                print("fixing image")
+            })
+//            .assign(to: \.image, on: self)
+
+//        cancellable?.cancel()
     }
 
     func cancel() {

@@ -42,7 +42,7 @@ final class PostsViewModel: ObservableObject {
                     self.posts = payload.dictionary!
                     guard let data = try? payload["data"]["results"][0].rawData() else { return }
                     print(data)
-                    self.character = try? JSONDecoder().decode(MarvelCharacter.self, from: data )
+                    self.character = try? JSONDecoder().decode(MarvelCharacter.self, from: data)
                     print("\(self.character.thumbnail?.path ?? " ")/landscape_xlarge.\(self.character.thumbnail!.ext)")
                     self.isPosted = true
                 }

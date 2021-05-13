@@ -25,7 +25,7 @@ struct AsyncImage<Placeholder: View>: View {
 
     private var image: some View {
         Group {
-            if loader.image != nil {
+            if loader.isLoad {
                 Image(uiImage: loader.image!)
                 .resizable()
                 .scaledToFit()

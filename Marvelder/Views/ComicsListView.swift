@@ -20,7 +20,7 @@ struct ComicsListView: View {
                 Spacer()
             }
             VStack {
-                    ForEach(comics.items) { item in
+                    ForEach(comics.items!) { item in
                         ComicsCellView(id: item.comicId ?? "12345")
                     }
             }

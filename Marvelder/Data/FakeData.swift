@@ -18,15 +18,15 @@ extension Fake {
             available: 10,
             items: [
             ComicsRessourceItem(
-                ressouceURI: "http://gateway.marvel.com/v1/public/comics/62304",
+                resourceURI: "http://gateway.marvel.com/v1/public/comics/62304",
                 name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
             ),
             ComicsRessourceItem(
-                ressouceURI: "http://gateway.marvel.com/v1/public/comics/78503",
+                resourceURI: "http://gateway.marvel.com/v1/public/comics/78503",
                 name: "2099 Alpha (2019) #1"
             ),
             ComicsRessourceItem(
-                ressouceURI: "http://gateway.marvel.com/v1/public/comics/60151",
+                resourceURI: "http://gateway.marvel.com/v1/public/comics/60151",
                 name: "A YEAR OF MARVELS TPB (Trade Paperback)"
             )
          ])

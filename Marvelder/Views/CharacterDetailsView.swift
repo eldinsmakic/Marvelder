@@ -16,7 +16,7 @@ struct CharacterDetailsView: View {
                         AsyncImage(
                             url: character.thumbnail!.url,
                             placeholder: Text("Loading ...")
-                        ).frame(width: .infinity, height: 450, alignment: .top)
+                        ).frame(height: 450, alignment: .top)
                         HStack {
                             Text(character.name ?? "")
                                 .font(.title)
@@ -29,8 +29,8 @@ struct CharacterDetailsView: View {
 
                     }.padding(.bottom, 32)
                     VStack {
-                        ComicsListView(comics: character.comics)
-                    }.frame(height: .infinity, alignment: .leading)
+                        ComicsListView(comics: character.comics!)
+                    }.frame( alignment: .leading)
         }.edgesIgnoringSafeArea(.top)
     }
 }
