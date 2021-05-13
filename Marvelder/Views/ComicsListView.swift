@@ -19,11 +19,13 @@ struct ComicsListView: View {
                     .padding(.leading, 8)
                 Spacer()
             }
-            VStack {
-                    ForEach(comics.items!) { item in
-                        ComicsCellView(id: item.comicId ?? "12345")
-                    }
-            }
+            ScrollView(.horizontal, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
+                HStack(spacing: 10) {
+                        ForEach(comics.items!) { item in
+                            ComicsCellView(id: item.comicId ?? "12345")
+                        }
+                }
+            }).frame(height: 200, alignment: .center)
         }
     }
 }
