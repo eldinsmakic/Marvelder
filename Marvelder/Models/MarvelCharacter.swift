@@ -17,19 +17,20 @@ public struct MarvelComic: Codable, Identifiable {
 }
 
 struct Comics: Codable {
-    let available: Int
-    let items: [ComicsRessourceItem]
+    let available: Int?
+    let items: [ComicsRessourceItem]?
 }
 
 struct ComicsRessourceItem: Codable, Identifiable {
-    public var id = UUID()
-    let ressouceURI: String
+
+    let resourceURI: String
     let name: String
 
+    public var id: UUID { UUID() }
     var comicId: String? {
-        guard let lastSlash = ressouceURI.lastIndex(of: "/") else { return nil }
+        guard let lastSlash = resourceURI.lastIndex(of: "/") else { return nil }
 
-        return String(ressouceURI[lastSlash...])
+        return String(resourceURI[lastSlash...])
     }
 }
 
@@ -45,7 +46,15 @@ struct MarvelCharacter: Codable {
     let name: String?
     let description: String?
     let thumbnail: MarvelImage?
-    let comics: Comics
+    let comics: Comics?
+
+    private enum CodingKeys : String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case description = "description"
+        case thumbnail = "thumbnail"
+        case comics = "comics"
+    }
 }
 
 struct MarvelImage: Codable {
