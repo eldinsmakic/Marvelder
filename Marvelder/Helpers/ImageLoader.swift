@@ -33,17 +33,6 @@ class ImageLoader: ObservableObject {
             }
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
-//            .handleEvents(receiveSubscription: { sub in
-//                print("receive subscription \(sub) test")
-//            }, receiveOutput: { _ in
-//                print("receive output t est")
-//            }, receiveCompletion: { completio in
-//                print("receive completion \(completio) test")
-//            }, receiveCancel: {
-//                print("receive cancel test")
-//            }, receiveRequest: { demand in
-//                print("receive demand \(demand) test")
-//            })
             .eraseToAnyPublisher()
             .sink(receiveCompletion: { error in
                 print(error)
