@@ -48,7 +48,7 @@ struct ComicsCellView: View {
                         }
                     }
                 }
-            }.frame(width: 400, height: 220, alignment: .leading)
+            }.frame(width: UIScreen.main.bounds.size.width - 16, height: 220, alignment: .center)
             .onAppear(perform: { viewModel.getData(fromId: id) })
     }
 }
