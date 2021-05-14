@@ -6,9 +6,7 @@
 //  Copyright © 2021 eldin smakic. All rights reserved.
 //
 
-enum Fake {
-
-}
+enum Fake {}
 
 extension Fake {
     enum Character {
@@ -22,6 +20,10 @@ extension Fake {
             ), comics: Fake.Comic.comics
         )
     }
+}
+
+extension Fake {
+
     enum Comic {
 
         static let comics = Comics(

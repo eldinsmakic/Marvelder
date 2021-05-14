@@ -10,17 +10,19 @@ import Combine
 import SwiftUI
 
 class ImageLoader: ObservableObject {
+
     @Published var image: UIImage?
     @Published var isLoad = false
+
+    private var cancellable: AnyCancellable?
+    private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
+
     private let url: URL
 
     init(url: URL) {
         self.url = url
     }
 
-    private var cancellable: AnyCancellable?
-    private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
-    private var disposeBag = Set<AnyCancellable>()
     deinit {
         cancellable?.cancel()
     }
@@ -34,16 +36,7 @@ class ImageLoader: ObservableObject {
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-            .sink(receiveCompletion: { error in
-                print(error)
-            }, receiveValue: { uiimage in
-                self.image = uiimage
-                self.isLoad = true
-                print("fixing image")
-            })
-//            .assign(to: \.image, on: self)
-
-//        cancellable?.cancel()
+            .assign(to: \.image, on: self)
     }
 
     func cancel() {

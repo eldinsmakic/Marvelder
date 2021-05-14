@@ -12,6 +12,7 @@ import Foundation
 import SwiftyJSON
 
 final class PostsViewModel: ObservableObject {
+
     @Published var posts: [String: Any] = [:]
     @Published var character: MarvelCharacter!
     @Published var isPosted = false
@@ -28,7 +29,6 @@ final class PostsViewModel: ObservableObject {
 
         let md5Hex = hash.map { String(format: "%02hhx", $0) }.joined()
         print("md5Hex: \(md5Hex)")
-
 
 
         let url = URL(string: "https://gateway.marvel.com:443/v1/public/characters?name=Spider-Man&ts=\(timestamp)&apikey=\(publicKey)&hash=\(md5Hex)")!

@@ -217,12 +217,20 @@
 			path = ModelViews;
 			sourceTree = "<group>";
 		};
+		99320F4F264E69560098472C /* Comics */ = {
+			isa = PBXGroup;
+			children = (
+				9980E613264C08F0000963AA /* ComicsCellView.swift */,
+				9980E617264C16AE000963AA /* ComicsListView.swift */,
+			);
+			path = Comics;
+			sourceTree = "<group>";
+		};
 		9980E610264C06BE000963AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99320F4F264E69560098472C /* Comics */,
 				9980E611264C06E1000963AA /* CharacterDetailsView.swift */,
-				9980E613264C08F0000963AA /* ComicsCellView.swift */,
-				9980E617264C16AE000963AA /* ComicsListView.swift */,
 				9947F5C7264DCF0300487692 /* SearchView.swift */,
 			);
 			path = Views;

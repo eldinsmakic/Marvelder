@@ -8,6 +8,7 @@
 import Foundation
 
 public struct MarvelComic: Codable, Identifiable {
+
     public let id: Int
     let title: String
     let variantDescription: String
@@ -17,6 +18,7 @@ public struct MarvelComic: Codable, Identifiable {
 }
 
 struct Comics: Codable {
+
     let available: Int?
     let items: [ComicsRessourceItem]?
 }
@@ -35,6 +37,7 @@ struct ComicsRessourceItem: Codable, Identifiable {
 }
 
 public struct MarvelComicCell: Codable, Identifiable {
+
     public let id: Int
     let title: String
     let description: String?
@@ -42,19 +45,20 @@ public struct MarvelComicCell: Codable, Identifiable {
 }
 
 struct MarvelCharacter: Codable {
+
     let id: Int?
     let name: String?
     let description: String?
     let thumbnail: MarvelImage?
     let comics: Comics?
 
-    private enum CodingKeys : String, CodingKey {
-        case id = "id"
-        case name = "name"
-        case description = "description"
-        case thumbnail = "thumbnail"
-        case comics = "comics"
-    }
+//    private enum CodingKeys : String, CodingKey {
+//        case id = "id"
+//        case name = "name"
+//        case description = "description"
+//        case thumbnail = "thumbnail"
+//        case comics = "comics"
+//    }
 }
 
 struct MarvelImage: Codable {

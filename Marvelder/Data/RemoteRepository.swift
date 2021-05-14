@@ -21,6 +21,7 @@ public protocol RemoteRepositoryProtocol {
 
 
 public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
+
     private let url: URL
     private let path: String
     private let baseURL = URL(string: "gateway.marvel.com")!
@@ -65,19 +66,12 @@ public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
         return URLSession.shared.dataTaskPublisher(for: urlComponents.url!)
             .tryMap({ (data: Data, response: URLResponse) in
                 guard let payload = try? JSON(data: data) else { throw URLError(.unknown)  }
-//                    self.posts = payload.dictionary!
                 guard let data = try? payload["data"]["results"][0].rawData() else { throw URLError(.unknown) }
-                    print(data)
-//                    self.character = try? JSONDecoder().decode(MarvelCharacter.self, from: data )
                 let value = try JSONDecoder().decode(T.self, from: data) // 4
                 return value
             })
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }
-
-    public func get(withId id: String) {
-        print("lke")
     }
 
     public func get(withRessourceURI uri: String) {
