@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct CharacterDetailsView: View {
+
     @State var character: MarvelCharacter
+
     var body: some View {
         ScrollView(.vertical) {
                     VStack {
@@ -17,6 +19,7 @@ struct CharacterDetailsView: View {
                             url: character.thumbnail!.url,
                             placeholder: Text("Loading ...")
                         ).frame(height: 450, alignment: .top)
+
                         HStack {
                             Text(character.name ?? "")
                                 .font(.title)
@@ -28,9 +31,11 @@ struct CharacterDetailsView: View {
                             .padding([.trailing, .leading])
 
                     }.padding(.bottom, 32)
+
                     VStack {
                         ComicsListView(comics: character.comics!)
                     }.frame( alignment: .leading)
+
         }.edgesIgnoringSafeArea(.top)
     }
 }

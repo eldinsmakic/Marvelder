@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 
 struct ComicsCellView: View {
+
     let id: String
     let useFakeData = true
 

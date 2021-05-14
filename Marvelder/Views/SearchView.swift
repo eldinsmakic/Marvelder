@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct SearchView: View {
+
     var listCharacter: [String] = ["Spider-Man","Spiterm","Captain"]
     @State var text = ""
+
     var body: some View {
         VStack {
             Text("HOME")
