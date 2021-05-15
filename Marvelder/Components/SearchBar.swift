@@ -13,6 +13,8 @@ struct SearchBar: View {
 
     @State private var isEditing = false
 
+    let search: ((String) -> Void)?
+
     var body: some View {
         HStack {
 
@@ -24,6 +26,7 @@ struct SearchBar: View {
                 .padding(.horizontal, 10)
                 .onTapGesture {
                     self.isEditing = true
+                    search?(text)
                 }
 
             if isEditing {
@@ -64,6 +67,8 @@ struct SearchBar: View {
 struct SearchBar_Previews: PreviewProvider {
     @State static var text = "test"
     static var previews: some View {
-        SearchBar(text: $text)
+        SearchBar(text: $text, search: { text in
+            print(text)
+        })
     }
 }

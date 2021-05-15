@@ -10,8 +10,13 @@ import SwiftUI
 
 struct SearchView: View {
 
-    var listCharacter: [String] = ["Spider-Man","Spiterm","Captain"]
+    @ObservedObject private var viewModel = CharacterSearchViewModel()
+
     @State var text = ""
+
+    func search(text: String) {
+        viewModel.search(name: text)
+    }
 
     var body: some View {
         VStack {
@@ -20,12 +25,10 @@ struct SearchView: View {
                 .bold()
                 .padding(.top, 40)
                 .padding(.bottom)
-            SearchBar(text: $text)
+            SearchBar(text: $text, search: search)
                 .padding()
-            List(listCharacter.filter({ str in
-                str.contains(text)
-            }), id: \.self ) { element in
-                Text(element)
+            List(viewModel.characters) { character in
+                CharacterCellView(character: character)
             }
         }.frame(height: UIScreen.main.bounds.size.height, alignment: .top)
     }

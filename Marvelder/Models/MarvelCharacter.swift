@@ -44,21 +44,13 @@ public struct MarvelComicCell: Codable, Identifiable {
     let thumbnail: MarvelImage?
 }
 
-struct MarvelCharacter: Codable {
+public struct MarvelCharacter: Codable, Identifiable {
 
-    let id: Int?
+    public let id: Int?
     let name: String?
     let description: String?
     let thumbnail: MarvelImage?
     let comics: Comics?
-
-//    private enum CodingKeys : String, CodingKey {
-//        case id = "id"
-//        case name = "name"
-//        case description = "description"
-//        case thumbnail = "thumbnail"
-//        case comics = "comics"
-//    }
 }
 
 struct MarvelImage: Codable {

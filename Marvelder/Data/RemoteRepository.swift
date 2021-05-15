@@ -14,11 +14,10 @@ public protocol RemoteRepositoryProtocol {
     associatedtype T
 
     func get(withId id: String) -> AnyPublisher<T,Error>
+    func getSearch(WithText text: String) -> AnyPublisher<[T], Error>
 //    func get(withRessourceURI uri: String) -> AnyPublisher<T,Error>
 //    func getAll() -> AnyPublisher<[T],Error>
 }
-
-
 
 public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
 
@@ -67,6 +66,7 @@ public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
             .tryMap({ (data: Data, response: URLResponse) in
                 guard let payload = try? JSON(data: data) else { throw URLError(.unknown)  }
                 guard let data = try? payload["data"]["results"][0].rawData() else { throw URLError(.unknown) }
+                print(data)
                 let value = try JSONDecoder().decode(T.self, from: data) // 4
                 return value
             })
@@ -74,11 +74,35 @@ public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    public func get(withRessourceURI uri: String) {
+    public func getSearch(WithText text: String) -> AnyPublisher<[T], Error> {
+        var urlComponents = urlComponents
+        urlComponents.path = "/v1/public/\(self.path)"
+        let searchText = URLQueryItem(name: "nameStartsWith", value: text)
 
+        urlComponents.queryItems?.append(searchText)
+
+        return URLSession.shared.dataTaskPublisher(for: urlComponents.url!)
+            .tryMap({ (data: Data, response: URLResponse) in
+                guard let payload = try? JSON(data: data) else { throw URLError(.unknown)  }
+                guard let data = try? payload["data"]["results"].rawData() else { throw URLError(.unknown) }
+                print(data)
+                let value = try JSONDecoder().decode([T].self, from: data)
+                return value
+            })
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }
 
+
+public class CharacterRepositoryMarvel : RemoteRepositoryMarvel<MarvelCharacter> {
+
+    public static let shared = CharacterRepositoryMarvel()
+
+    private init() {
+        super.init(path: "characters")
+    }
+}
 
 public class ComicRepositoryMarvel : RemoteRepositoryMarvel<MarvelComic> {
 
