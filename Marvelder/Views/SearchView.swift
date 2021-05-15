@@ -11,6 +11,7 @@ import SwiftUI
 struct SearchView: View {
 
     @ObservedObject private var viewModel = CharacterSearchViewModel()
+    @ObservedObject private var keyboardHandler = KeyboardHandler()
 
     @State var text = ""
 
@@ -35,7 +36,7 @@ struct SearchView: View {
                             CharacterCellView(character: character)
                         })
                 }
-            }.frame(height: UIScreen.main.bounds.size.height, alignment: .top)
+            }.frame(height: keyboardHandler.keyboardHeight == 0 ?  UIScreen.main.bounds.size.height : UIScreen.main.bounds.size.height - keyboardHandler.keyboardHeight, alignment: .top)
         }
     }
 }
