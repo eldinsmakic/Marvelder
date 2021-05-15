@@ -36,7 +36,12 @@ class ImageLoader: ObservableObject {
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-            .assign(to: \.image, on: self)
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { image in
+                self.image = image
+                self.isLoad = true
+            })
     }
 
     func cancel() {
