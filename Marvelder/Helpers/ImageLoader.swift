@@ -12,7 +12,6 @@ import SwiftUI
 class ImageLoader: ObservableObject {
 
     @Published var image: UIImage?
-    @Published var isLoad = false
 
     private var cancellable: AnyCancellable?
     private static let imageProcessingQueue = DispatchQueue(label: "image-processing")
@@ -36,12 +35,7 @@ class ImageLoader: ObservableObject {
             .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-            .sink(receiveCompletion: { error in
-                print(error)
-            }, receiveValue: { image in
-                self.image = image
-                self.isLoad = true
-            })
+            .assign(to: \.image, on: self)
     }
 
     func cancel() {
