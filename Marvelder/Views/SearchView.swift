@@ -19,18 +19,24 @@ struct SearchView: View {
     }
 
     var body: some View {
-        VStack {
-            Text("HOME")
-                .font(.title)
-                .bold()
-                .padding(.top, 40)
-                .padding(.bottom)
-            SearchBar(text: $text, search: search)
-                .padding()
-            List(viewModel.characters) { character in
-                CharacterCellView(character: character)
-            }
-        }.frame(height: UIScreen.main.bounds.size.height, alignment: .top)
+        NavigationView {
+            VStack {
+                Text("HOME")
+                    .font(.title)
+                    .bold()
+                    .padding(.top, 40)
+                    .padding(.bottom)
+                SearchBar(text: $text, search: search)
+                    .padding()
+                List(viewModel.characters) { character in
+                    NavigationLink(
+                        destination: CharacterDetailsView(character: character),
+                        label: {
+                            CharacterCellView(character: character)
+                        })
+                }
+            }.frame(height: UIScreen.main.bounds.size.height, alignment: .top)
+        }
     }
 }
 
