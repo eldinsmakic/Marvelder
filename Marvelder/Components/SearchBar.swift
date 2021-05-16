@@ -29,7 +29,7 @@ struct SearchBar: View {
                     search?(text)
                 }
 
-            if isEditing {
+            if isEditing && !text.isEmpty {
                 Button(action: {
                     self.isEditing = false
                     self.text = ""
@@ -50,13 +50,13 @@ struct SearchBar: View {
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 12)
 
-                if isEditing {
+                if isEditing && !text.isEmpty {
                     Button(action: {
                         self.text = ""
                     }) {
                         Image(systemName: "multiply.circle.fill")
                             .foregroundColor(.gray)
-                            .padding(.trailing, 100)
+                            .padding(.trailing, text.isEmpty ? 12 : 100)
                     }
                 }
             }
