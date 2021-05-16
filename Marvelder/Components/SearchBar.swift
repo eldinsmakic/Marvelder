@@ -18,7 +18,11 @@ struct SearchBar: View {
     var body: some View {
         HStack {
 
-            TextField("Search ...", text: $text)
+            TextField("Search ...", text: Binding(get: { text }, set: { value in
+                text = value
+                search?(value)
+            })
+                        )
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -26,7 +30,6 @@ struct SearchBar: View {
                 .padding(.horizontal, 10)
                 .onTapGesture {
                     self.isEditing = true
-                    search?(text)
                 }
 
             if isEditing && !text.isEmpty {
