@@ -35,6 +35,9 @@
 		99DA6C922651A75E001080CB /* GenericListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA6C912651A75E001080CB /* GenericListView.swift */; };
 		99DA6C942651AA34001080CB /* StoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA6C932651AA34001080CB /* StoryCellViewModel.swift */; };
 		99DA6C962651AB48001080CB /* StoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA6C952651AB48001080CB /* StoryCellView.swift */; };
+		99DA6C9826525E16001080CB /* GenericCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA6C9726525E15001080CB /* GenericCellView.swift */; };
+		99DA6C9B265260B5001080CB /* GenericCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA6C9A265260B5001080CB /* GenericCellViewModel.swift */; };
+		99DA6C9D2652612B001080CB /* FakeDataCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA6C9C2652612B001080CB /* FakeDataCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,9 @@
 		99DA6C912651A75E001080CB /* GenericListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericListView.swift; sourceTree = "<group>"; };
 		99DA6C932651AA34001080CB /* StoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellViewModel.swift; sourceTree = "<group>"; };
 		99DA6C952651AB48001080CB /* StoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellView.swift; sourceTree = "<group>"; };
+		99DA6C9726525E15001080CB /* GenericCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellView.swift; sourceTree = "<group>"; };
+		99DA6C9A265260B5001080CB /* GenericCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModel.swift; sourceTree = "<group>"; };
+		99DA6C9C2652612B001080CB /* FakeDataCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataCellViewModel.swift; sourceTree = "<group>"; };
 		E147BDE8C172D226F60D8C17 /* Pods-Marvelder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvelder.debug.xcconfig"; path = "Target Support Files/Pods-Marvelder/Pods-Marvelder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +233,8 @@
 				99320F4D264E66510098472C /* ComicCellViewModel.swift */,
 				99822D4B264FD6A100647A9A /* CharacterSearchViewModel.swift */,
 				99DA6C932651AA34001080CB /* StoryCellViewModel.swift */,
+				99DA6C9A265260B5001080CB /* GenericCellViewModel.swift */,
+				99DA6C9C2652612B001080CB /* FakeDataCellViewModel.swift */,
 			);
 			path = ModelViews;
 			sourceTree = "<group>";
@@ -266,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				99DA6C912651A75E001080CB /* GenericListView.swift */,
+				99DA6C9726525E15001080CB /* GenericCellView.swift */,
 			);
 			path = GenericsElements;
 			sourceTree = "<group>";
@@ -478,6 +487,7 @@
 				99DA6C962651AB48001080CB /* StoryCellView.swift in Sources */,
 				9980E612264C06E1000963AA /* CharacterDetailsView.swift in Sources */,
 				991E108624F5BBD9004024AF /* AppDelegate.swift in Sources */,
+				99DA6C9B265260B5001080CB /* GenericCellViewModel.swift in Sources */,
 				9980E618264C16AE000963AA /* ComicsListView.swift in Sources */,
 				99B75112264C7D5800B101F8 /* AsyncImage.swift in Sources */,
 				991E108824F5BBD9004024AF /* SceneDelegate.swift in Sources */,
@@ -488,9 +498,11 @@
 				991E108D24F5BBD9004024AF /* ContentView.swift in Sources */,
 				99822D4C264FD6A100647A9A /* CharacterSearchViewModel.swift in Sources */,
 				9980E61B264C17B3000963AA /* RemoteRepository.swift in Sources */,
+				99DA6C9D2652612B001080CB /* FakeDataCellViewModel.swift in Sources */,
 				99320F4E264E66510098472C /* ComicCellViewModel.swift in Sources */,
 				9947F5C8264DCF0300487692 /* SearchView.swift in Sources */,
 				991E10BA24F6DEEF004024AF /* SwiftMD5.swift in Sources */,
+				99DA6C9826525E16001080CB /* GenericCellView.swift in Sources */,
 				9980E61D264C1E75000963AA /* FakeData.swift in Sources */,
 				991E108B24F5BBD9004024AF /* Marvelder.xcdatamodeld in Sources */,
 				99B75115264C7D9F00B101F8 /* ImageLoader.swift in Sources */,
