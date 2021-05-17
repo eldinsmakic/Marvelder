@@ -29,24 +29,45 @@ final class ChacaterCellViewModel: ObservableObject {
     }
 }
 
+struct BlurBG: UIViewRepresentable {
+
+    func makeUIView(context: Context) -> some UIVisualEffectView {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+
+        return view
+    }
+
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+
+    }
+}
+
 struct CharacterCellView: View {
 
     @State var character: MarvelCharacter
 
     var body: some View {
-        GeometryReader { geo in
-            HStack {
-                AsyncImage(url: character.thumbnail!.url, placeholder: Text("Loading ..."))
-                    .frame(minWidth: geo.size.width/3, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: 200, alignment: .center)
-                    VStack {
-                        Text(character.name ?? "no Name").font(.title3)
-                            .lineLimit(2)
-                            .padding([.trailing, .bottom], 8)
-                        Text(character.description ?? "No description").font(.body)
-                            .foregroundColor(.gray)
-                    }
+        HStack(alignment: .center) {
+            Spacer()
+            GeometryReader { geo in
+                ZStack(alignment: .bottom) {
+                    AsyncImage(url: character.thumbnail!.url, placeholder: Text("Loading ..."))
+                        .cornerRadius(10)
+                        .frame(maxWidth: UIScreen.main.bounds.size.width - (8*2),
+                               alignment: .center)
+//                    Rectangle()
+//                        .fill(Color.clear)
+//                        .frame(height: 10, alignment: .bottom)
+                        Text(character.name ?? "no Name").font(.title2)
+                            .bold()
+                            .frame(maxWidth: UIScreen.main.bounds.size.width - (16*2))
+                            .padding()
+                            .background(BlurBG())
+
                 }
-        }.frame(width: UIScreen.main.bounds.size.width - (8*2), height: 200, alignment: .center)
+            }.frame(width: UIScreen.main.bounds.size.width - (16*2), alignment: .center)
+            Spacer()
+        }
     }
 }
 
