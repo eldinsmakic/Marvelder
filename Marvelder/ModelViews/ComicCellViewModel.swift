@@ -8,23 +8,10 @@
 
 import Combine
 
-final class ComicCellViewModel: ObservableObject {
+final class ComicCellViewModel: GenericCellViewModel {
 
-    let repo = ComicCellRepositoryMarvel.shared
-
-    @Published var comicCell = Fake.Comic.marvelComicCell
-    @Published var isLoad = false
-
-    var cancellationToken: AnyCancellable?
-
-    public func getData(fromId id: String) {
-        cancellationToken = repo.get(withId: id)
-            .sink { error in
-                print(error)
-        } receiveValue: { data in
-            self.comicCell = data
-            self.isLoad = true
-        }
+    init() {
+        super.init(repo: ComicCellRepositoryMarvel.shared)
     }
 }
 

@@ -31,12 +31,11 @@ final class PostsViewModel: ObservableObject {
         print("md5Hex: \(md5Hex)")
 
 
-        let url = URL(string: "https://gateway.marvel.com:443/v1/public/characters?name=Spider-Man&ts=\(timestamp)&apikey=\(publicKey)&hash=\(md5Hex)")!
+        let url = URL(string: "https://gateway.marvel.com:443/v1/public/characters?name=Spider-man&ts=\(timestamp)&apikey=\(publicKey)&hash=\(md5Hex)")!
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             do {
                 guard let data = data else { return }
-
                 guard let payload = try? JSON(data: data) else { return }
                 DispatchQueue.main.async {
                     self.posts = payload.dictionary!
@@ -45,6 +44,7 @@ final class PostsViewModel: ObservableObject {
                     self.character = try? JSONDecoder().decode(MarvelCharacter.self, from: data)
                     print("\(self.character.thumbnail?.path ?? " ")/landscape_xlarge.\(self.character.thumbnail!.ext)")
                     self.isPosted = true
+                    print("test")
                 }
             } catch {
                 print("Failed To decode: ", error)
@@ -55,14 +55,10 @@ final class PostsViewModel: ObservableObject {
 
 struct ContentView: View {
     
-    @ObservedObject var post = PostsViewModel()
+//    @ObservedObject var post = PostsViewModel()
     var body: some View {
         VStack {
-            if self.post.isPosted {
-                CharacterDetailsView(character: post.character)
-            }
-        }.onAppear {
-            self.post.fetch()
+            SearchView()
         }
     }
 }

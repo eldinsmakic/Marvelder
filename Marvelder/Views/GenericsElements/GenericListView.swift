@@ -36,8 +36,13 @@ struct GenericListView<T:MarvelListT, ItemDetail: View>: View {
 
 struct GenericListView_Previews: PreviewProvider {
     static var previews: some View {
-        GenericListView(items: Fake.Comic.comics, card: { item in
-                ComicsCellView(id: item.comicId ?? "1234")
+        GenericListView(
+            items: Fake.Comic.comics,
+            card: {
+                item in GenericCellView(
+                    id: item.comicId!,
+                    viewModel: ComicCellViewModel()
+                )
             }
         )
     }

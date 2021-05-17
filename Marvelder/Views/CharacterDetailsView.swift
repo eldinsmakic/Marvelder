@@ -33,11 +33,21 @@ struct CharacterDetailsView: View {
 
             GenericListView(
                 items: character.comics!,
-                card: { item in ComicsCellViewFake() }
+                card: { item in
+                    GenericCellView(
+                        id: item.comicId ?? "12345",
+                        viewModel: ComicCellViewModel()
+                    )
+                }
             )
             GenericListView(
                 items: character.stories!,
-                card: { item in StoryCellViewFake()}
+                card: { item in
+                    GenericCellView(
+                        id: item.comicId ?? "12345",
+                        viewModel: StoryCellViewModel()
+                    )
+                }
             )
 
         }.edgesIgnoringSafeArea(.top)
