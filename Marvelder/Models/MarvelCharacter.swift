@@ -14,29 +14,55 @@ public struct MarvelComic: Codable, Identifiable {
     let variantDescription: String
     let description: String
     let thumbnail: MarvelImage?
-    let comics: Comics
 }
 
-struct Comics: Codable {
+typealias MarvelListT = Codable & Identifiable
 
-    let available: Int?
-    let items: [ComicsRessourceItem]?
+class MarvelList<T:MarvelListT>: Codable {
+
+    public let available: Int?
+    public let items: [T]?
+
+    init(
+        available: Int?,
+        items: [T]
+    ) {
+        self.available = available
+        self.items = items
+    }
 }
 
-struct ComicsRessourceItem: Codable, Identifiable {
+class ComicsList: MarvelList<MarvelRessourceItem> {}
+
+class StoryList: MarvelList<MarvelRessourceItem> {}
+
+
+struct MarvelRessourceItem: Codable, Identifiable {
 
     let resourceURI: String
     let name: String
 
     public var id: UUID { UUID() }
+
     var comicId: String? {
         guard let lastSlash = resourceURI.lastIndex(of: "/") else { return nil }
 
-        return String(resourceURI[lastSlash...])
+        var id = resourceURI[lastSlash...]
+        id.remove(at: id.startIndex)
+
+        return String(id)
     }
 }
 
 public struct MarvelComicCell: Codable, Identifiable {
+
+    public let id: Int
+    let title: String
+    let description: String?
+    let thumbnail: MarvelImage?
+}
+
+public struct MarvelStoryCell: Codable, Identifiable {
 
     public let id: Int
     let title: String
@@ -50,7 +76,8 @@ public struct MarvelCharacter: Codable, Identifiable {
     let name: String?
     let description: String?
     let thumbnail: MarvelImage?
-    let comics: Comics?
+    let comics: ComicsList?
+    let stories: StoryList?
 }
 
 struct MarvelImage: Codable {
