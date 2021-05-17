@@ -10,6 +10,8 @@ import SwiftUI
 
 struct GenericListView<T:MarvelListT, ItemDetail: View>: View {
 
+    let title: String
+
     @State var items: MarvelList<T>
 
     var card: (T) -> ItemDetail
@@ -17,7 +19,7 @@ struct GenericListView<T:MarvelListT, ItemDetail: View>: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Comics")
+                Text(title)
                     .font(.title)
                     .bold()
                     .padding(.leading, 8)
@@ -35,8 +37,10 @@ struct GenericListView<T:MarvelListT, ItemDetail: View>: View {
 }
 
 struct GenericListView_Previews: PreviewProvider {
+
     static var previews: some View {
         GenericListView(
+            title: "Comics",
             items: Fake.Comic.comics,
             card: {
                 item in GenericCellView(

@@ -12,6 +12,7 @@ import SwiftUI
 struct ComicsListView_Previews: PreviewProvider {
     static var previews: some View {
         GenericListView(
+            title: "Comics",
             items: Fake.Comic.comics,
             card: {
                 item in GenericCellView(

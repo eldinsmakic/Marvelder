@@ -32,6 +32,7 @@ struct CharacterDetailsView: View {
                     }.padding(.bottom, 32)
 
             GenericListView(
+                title: "Comics",
                 items: character.comics!,
                 card: { item in
                     GenericCellView(
@@ -41,6 +42,7 @@ struct CharacterDetailsView: View {
                 }
             )
             GenericListView(
+                title: "Stories",
                 items: character.stories!,
                 card: { item in
                     GenericCellView(
@@ -57,6 +59,8 @@ struct CharacterDetailsView: View {
 struct CharacterDetails_Previews: PreviewProvider {
     static var previews: some View {
         CharacterDetailsView(character: Fake.Character.character)
+//        CharacterDetailsView(character: Fake.Character.character)
+//            .previewDevice(PreviewDevice(rawValue: "iPad Pro (10.5-inch)"))
     }
 }
 
