@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SearchBar: View {
+
     @Binding var text: String
 
     @State private var isEditing = false
@@ -59,7 +60,7 @@ struct SearchBar: View {
                     }) {
                         Image(systemName: "multiply.circle.fill")
                             .foregroundColor(.gray)
-                            .padding(.trailing, text.isEmpty ? 12 : 100)
+                            .padding(.trailing, text.isEmpty ? CGFloat(12.0) : CGFloat(105.0))
                     }
                 }
             }
