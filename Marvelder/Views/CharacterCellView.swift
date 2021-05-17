@@ -34,24 +34,19 @@ struct CharacterCellView: View {
     @State var character: MarvelCharacter
 
     var body: some View {
-            GeometryReader { geo in
-                HStack {
-                        AsyncImage(url: character.thumbnail!.url, placeholder: Text("Loading ..."))
-                            .frame(width: geo.size.width/3 , alignment: .center)
-                        VStack {
-                            HStack {
-                                Text(character.name ?? "no Name").font(.title3)
-                                    .lineLimit(2)
-                                    .padding([.leading, .bottom, .trailing], 8)
-                                    .frame(alignment: .leading)
-                                Spacer()
-                            }.padding(.bottom)
-                            Text(character.description ?? "No description").font(.body)
-                                .padding(.trailing)
-                                .frame(alignment: .bottom)
-                        }
+        GeometryReader { geo in
+            HStack {
+                AsyncImage(url: character.thumbnail!.url, placeholder: Text("Loading ..."))
+                    .frame(minWidth: geo.size.width/3, idealWidth: nil, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: 200, alignment: .center)
+                    VStack {
+                        Text(character.name ?? "no Name").font(.title3)
+                            .lineLimit(2)
+                            .padding([.trailing, .bottom], 8)
+                        Text(character.description ?? "No description").font(.body)
+                            .foregroundColor(.gray)
                     }
-            }.frame(width: UIScreen.main.bounds.size.width - (8*2), height: 200, alignment: .center)
+                }
+        }.frame(width: UIScreen.main.bounds.size.width - (8*2), height: 200, alignment: .center)
     }
 }
 
