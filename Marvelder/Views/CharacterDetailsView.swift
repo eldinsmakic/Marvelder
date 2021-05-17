@@ -32,9 +32,14 @@ struct CharacterDetailsView: View {
 
                     }.padding(.bottom, 32)
 
-                    VStack {
-                        ComicsListView(comics: character.comics!)
-                    }.frame( alignment: .leading)
+            GenericListView(
+                items: character.comics!,
+                card: { item in ComicsCellViewFake() }
+            )
+            GenericListView(
+                items: character.stories!,
+                card: { item in StoryCellViewFake()}
+            )
 
         }.edgesIgnoringSafeArea(.top)
     }
