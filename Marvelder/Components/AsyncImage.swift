@@ -14,8 +14,18 @@ struct AsyncImage<Placeholder: View>: View {
 
     private let placeholder: Placeholder?
 
-    init(url: URL, placeholder: Placeholder? = nil) {
-        loader = ImageLoader(url: url)
+    init(url: URL?, placeholder: Placeholder? = nil) {
+        if let url = url {
+            loader = ImageLoader(url: url)
+        } else {
+            let marvelImage = MarvelImage(
+                path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
+                ext: "jpg"
+            )
+
+            loader = ImageLoader(url: marvelImage.url)
+        }
+
         self.placeholder = placeholder
     }
 
