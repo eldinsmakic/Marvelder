@@ -29,13 +29,26 @@ struct SearchView: View {
                     .padding(.bottom)
                 SearchBar(text: $text, search: search)
                     .padding()
-                List(viewModel.characters) { character in
-                    NavigationLink(
-                        destination: CharacterDetailsView(character: character),
-                        label: {
-                            CharacterCellView(character: character)
-                        })
+
+                HStack {
+                    Text("Characters: \(viewModel.characters.count)")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    Spacer()
                 }
+                ScrollView(.horizontal, showsIndicators: false, content: {
+                    HStack {
+                        ForEach(viewModel.characters) { character in
+                            NavigationLink(
+                                destination: CharacterDetailsView(character: character),
+                                label: {
+                                    CharacterCellView(character: character)
+                                })
+                        }
+                    }
+                }
+            )
             }.frame(height: keyboardHandler.keyboardHeight == 0 ?  UIScreen.main.bounds.size.height : UIScreen.main.bounds.size.height - keyboardHandler.keyboardHeight, alignment: .top)
         }
     }
