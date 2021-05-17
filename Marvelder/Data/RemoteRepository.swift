@@ -61,12 +61,12 @@ public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
     public func get(withId id: String) -> AnyPublisher<T, Error> {
         var urlComponents = urlComponents
         urlComponents.path = "/v1/public/\(self.path)/\(id)"
-        print(urlComponents)
+
         return URLSession.shared.dataTaskPublisher(for: urlComponents.url!)
             .tryMap({ (data: Data, response: URLResponse) in
                 guard let payload = try? JSON(data: data) else { throw URLError(.unknown)  }
                 guard let data = try? payload["data"]["results"][0].rawData() else { throw URLError(.unknown) }
-                print(data)
+
                 let value = try JSONDecoder().decode(T.self, from: data) // 4
                 return value
             })
@@ -86,7 +86,7 @@ public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
 
                 guard let payload = try? JSON(data: data) else { throw URLError(.unknown)  }
                 guard let data = try? payload["data"]["results"].rawData() else { throw URLError(.unknown) }
-                print(data)
+
                 let value = try JSONDecoder().decode([T].self, from: data)
 
                 return value
@@ -133,6 +133,24 @@ public class StoryCellRepositoryMarvel : RemoteRepositoryMarvel<MarvelComicCell>
     }
 }
 
+public class EventsCellRepositoryMarvel : RemoteRepositoryMarvel<MarvelComicCell> {
+
+    public static let shared = EventsCellRepositoryMarvel()
+
+    private init() {
+        super.init(path: "events")
+    }
+}
+
+public class SeriesCellRepositoryMarvel : RemoteRepositoryMarvel<MarvelComicCell> {
+
+    public static let shared = SeriesCellRepositoryMarvel()
+
+    private init() {
+        super.init(path: "series")
+    }
+}
+
 public class FakeDataRepositoryMarvel : RemoteRepositoryMarvel<MarvelComicCell> {
 
     public static let shared = FakeDataRepositoryMarvel()
@@ -140,6 +158,7 @@ public class FakeDataRepositoryMarvel : RemoteRepositoryMarvel<MarvelComicCell> 
     public override func get(withId id: String) -> AnyPublisher<MarvelComicCell, Error> {
         return Just<MarvelComicCell>(Fake.Generic.cell)
             .mapError { _ in URLError(.unknown) }
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

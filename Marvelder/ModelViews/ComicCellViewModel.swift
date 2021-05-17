@@ -15,3 +15,16 @@ final class ComicCellViewModel: GenericCellViewModel {
     }
 }
 
+final class EventCellViewModel: GenericCellViewModel {
+
+    init() {
+        super.init(repo: EventsCellRepositoryMarvel.shared)
+    }
+}
+
+final class SeriesCellViewModel: GenericCellViewModel {
+
+    init() {
+        super.init(repo: SeriesCellRepositoryMarvel.shared)
+    }
+}

@@ -36,6 +36,9 @@ class ComicsList: MarvelList<MarvelRessourceItem> {}
 
 class StoryList: MarvelList<MarvelRessourceItem> {}
 
+class EventList: MarvelList<MarvelRessourceItem> {}
+
+class SeriesList: MarvelList<MarvelRessourceItem> {}
 
 struct MarvelRessourceItem: Codable, Identifiable {
 
@@ -44,7 +47,7 @@ struct MarvelRessourceItem: Codable, Identifiable {
 
     public var id: UUID { UUID() }
 
-    var comicId: String? {
+    var ressourceId: String? {
         guard let lastSlash = resourceURI.lastIndex(of: "/") else { return nil }
 
         var id = resourceURI[lastSlash...]
@@ -78,6 +81,8 @@ public struct MarvelCharacter: Codable, Identifiable {
     let thumbnail: MarvelImage?
     let comics: ComicsList?
     let stories: StoryList?
+    let events: EventList?
+    let series: SeriesList?
 }
 
 struct MarvelImage: Codable {

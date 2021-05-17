@@ -21,7 +21,9 @@ extension Fake {
                 ext: "jpg"
             ),
             comics: Fake.Comic.comics,
-            stories: Fake.Story.storys
+            stories: Fake.Story.storys,
+            events: Fake.Events.events,
+            series: Fake.Series.series
         )
     }
 }
@@ -37,15 +39,15 @@ extension Fake {
                     resourceURI: "http://gateway.marvel.com/v1/public/comics/62304",
                     name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
                 ),
-                    MarvelRessourceItem(
+                MarvelRessourceItem(
                     resourceURI: "http://gateway.marvel.com/v1/public/comics/78503",
                     name: "2099 Alpha (2019) #1"
                 ),
-                    MarvelRessourceItem(
+                MarvelRessourceItem(
                     resourceURI: "http://gateway.marvel.com/v1/public/comics/60151",
                     name: "A YEAR OF MARVELS TPB (Trade Paperback)"
                 )
-         ]
+            ]
         )
 
         static let marvelComicCell = MarvelComicCell(
@@ -55,7 +57,7 @@ extension Fake {
             thumbnail: MarvelImage(
                 path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
                 ext: "jpg")
-            )
+        )
     }
 }
 
@@ -71,11 +73,11 @@ extension Fake {
                     resourceURI: "http://gateway.marvel.com/v1/public/comics/62304",
                     name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
                 ),
-                    MarvelRessourceItem(
+                MarvelRessourceItem(
                     resourceURI: "http://gateway.marvel.com/v1/public/comics/78503",
                     name: "2099 Alpha (2019) #1"
                 ),
-                    MarvelRessourceItem(
+                MarvelRessourceItem(
                     resourceURI: "http://gateway.marvel.com/v1/public/comics/60151",
                     name: "A YEAR OF MARVELS TPB (Trade Paperback)"
                 )
@@ -89,21 +91,86 @@ extension Fake {
             thumbnail: MarvelImage(
                 path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
                 ext: "jpg")
-            )
+        )
     }
 }
 
+extension Fake {
+
+    enum Events {
+
+        static let events = EventList(
+            available: 10,
+            items: [
+                MarvelRessourceItem(
+                    resourceURI: "http://gateway.marvel.com/v1/public/comics/62304",
+                    name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
+                ),
+                MarvelRessourceItem(
+                    resourceURI: "http://gateway.marvel.com/v1/public/comics/78503",
+                    name: "2099 Alpha (2019) #1"
+                ),
+                MarvelRessourceItem(
+                    resourceURI: "http://gateway.marvel.com/v1/public/comics/60151",
+                    name: "A YEAR OF MARVELS TPB (Trade Paperback)"
+                )
+            ]
+        )
+
+        static let event = MarvelComicCell(
+            id: 4,
+            title: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1",
+            description: "Spider-Man's Clone Saga has spun completely out of control! There's only one team that can save the wall-crawler now: the Marvel editors! Bob Harras, Ralph Macchio, Tom Brevoort, and more put their heads together to see if ANYTHING can get Spidey out of this doppelganger debacle!",
+            thumbnail: MarvelImage(
+                path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
+                ext: "jpg")
+        )
+    }
+}
+
+extension Fake {
+
+    enum Series {
+
+        static let series = SeriesList(
+            available: 10,
+            items: [
+                MarvelRessourceItem(
+                    resourceURI: "http://gateway.marvel.com/v1/public/comics/62304",
+                    name: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1"
+                ),
+                MarvelRessourceItem(
+                    resourceURI: "http://gateway.marvel.com/v1/public/comics/78503",
+                    name: "2099 Alpha (2019) #1"
+                ),
+                MarvelRessourceItem(
+                    resourceURI: "http://gateway.marvel.com/v1/public/comics/60151",
+                    name: "A YEAR OF MARVELS TPB (Trade Paperback)"
+                )
+            ]
+        )
+
+        static let serie = MarvelComicCell(
+            id: 4,
+            title: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1",
+            description: "Spider-Man's Clone Saga has spun completely out of control! There's only one team that can save the wall-crawler now: the Marvel editors! Bob Harras, Ralph Macchio, Tom Brevoort, and more put their heads together to see if ANYTHING can get Spidey out of this doppelganger debacle!",
+            thumbnail: MarvelImage(
+                path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
+                ext: "jpg")
+        )
+    }
+}
 
 extension Fake {
 
     enum Generic {
         static let cell = MarvelComicCell(
             id: 4,
-           title: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1",
-           description: "Spider-Man's Clone Saga has spun completely out of control! There's only one team that can save the wall-crawler now: the Marvel editors! Bob Harras, Ralph Macchio, Tom Brevoort, and more put their heads together to see if ANYTHING can get Spidey out of this doppelganger debacle!",
-           thumbnail: MarvelImage(
-               path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
-               ext: "jpg")
-           )
+            title: "Spider-Man: 101 Ways to End the Clone Saga (1997) #1",
+            description: "Spider-Man's Clone Saga has spun completely out of control! There's only one team that can save the wall-crawler now: the Marvel editors! Bob Harras, Ralph Macchio, Tom Brevoort, and more put their heads together to see if ANYTHING can get Spidey out of this doppelganger debacle!",
+            thumbnail: MarvelImage(
+                path: "http://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
+                ext: "jpg")
+        )
     }
 }
