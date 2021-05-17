@@ -18,8 +18,7 @@ struct CharacterDetailsView: View {
                         AsyncImage(
                             url: character.thumbnail!.url,
                             placeholder: Text("Loading ...")
-                        ).frame(height: 450, alignment: .top)
-
+                        ).frame(height: 450, alignment: .center)
                         HStack {
                             Text(character.name ?? "")
                                 .font(.title)
