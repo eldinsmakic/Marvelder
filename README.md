@@ -1,5 +1,4 @@
-# Marvelder
-
+# Marvelder (Work in progress)
 Marvelder is an App that use Marvel API (https://developer.marvel.com/) to access six resource types:
 
 - Comics: individual print and digital comic issues, collections and graphic novels. For example: Amazing Fantasy #15.
@@ -18,5 +17,5 @@ ressources from the six types
 - Details on almost every ressources
 
 
-
+Demo :  https://youtu.be/572ugQ0z06s
 
