@@ -18,20 +18,24 @@ struct SearchBar: View {
 
     var body: some View {
         HStack {
-
-            TextField("Search ...", text: Binding(get: { text }, set: { value in
-                text = value
-                search?(value)
-            })
-                        )
-                .padding(7)
-                .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .padding(.horizontal, 10)
-                .onTapGesture {
-                    self.isEditing = true
-                }
+            TextField(
+                "Search ...",
+                text: Binding(
+                        get: { text },
+                        set: { value in
+                                text = value
+                            search?(value)
+                        }
+                )
+            )
+            .padding(7)
+            .padding(.horizontal, 25)
+            .background(Color(.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal, 10)
+            .onTapGesture {
+                self.isEditing = true
+            }
 
             if isEditing && !text.isEmpty {
                 Button(action: {
