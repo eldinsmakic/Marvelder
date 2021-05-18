@@ -44,7 +44,7 @@ struct GenericListView_Previews: PreviewProvider {
             items: Fake.Comic.comics,
             card: {
                 item in GenericCellView(
-                    id: item.comicId!,
+                    id: item.ressourceId!,
                     viewModel: ComicCellViewModel()
                 )
             }
