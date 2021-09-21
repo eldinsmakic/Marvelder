@@ -57,8 +57,9 @@ struct ContentView: View {
     
 //    @ObservedObject var post = PostsViewModel()
     var body: some View {
-        VStack {
+        TabView {
             SearchView()
+                .tabItem { Text("Home") }
         }
     }
 }

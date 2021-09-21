@@ -14,43 +14,66 @@ struct CharacterDetailsView: View {
 
     var body: some View {
         ScrollView(.vertical) {
-                    VStack {
-                        AsyncImage(
-                            url: character.thumbnail!.url,
-                            placeholder: Text("Loading ...")
-                        ).frame(height: 450, alignment: .center)
-                        HStack {
-                            Text(character.name ?? "")
-                                .font(.title)
-                                .bold()
-                            Spacer()
-                        }.padding([.bottom, .leading , .trailing], 8)
+                VStack {
+                    AsyncImageHeader(
+                        url: character.thumbnail!.url,
+                        placeholder: Text("Loading ...")
+                    )
+                    HStack {
+                        Text(character.name ?? "")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                    }.padding([.bottom, .leading , .trailing], 8)
 
-                        Text(character.description ?? "")
-                            .padding([.trailing, .leading])
+                    Text(character.description ?? "")
+                        .padding([.trailing, .leading])
 
-                    }.padding(.bottom, 32)
+                }.padding(.bottom, 32)
 
             GenericListView(
                 title: "Comics",
                 items: character.comics!,
                 card: { item in
                     GenericCellView(
-                        id: item.comicId ?? "12345",
+                        id: item.ressourceId ?? "12345",
                         viewModel: ComicCellViewModel()
                     )
                 }
-            )
+            ).padding(.bottom, 32)
+
             GenericListView(
                 title: "Stories",
                 items: character.stories!,
                 card: { item in
                     GenericCellView(
-                        id: item.comicId ?? "12345",
+                        id: item.ressourceId ?? "12345",
                         viewModel: StoryCellViewModel()
                     )
                 }
-            )
+            ).padding(.bottom, 32)
+
+            GenericListView(
+                title: "Events",
+                items: character.stories!,
+                card: { item in
+                    GenericCellView(
+                        id: item.ressourceId ?? "12345",
+                        viewModel: EventCellViewModel()
+                    )
+                }
+            ).padding(.bottom, 32)
+
+            GenericListView(
+                title: "Series",
+                items: character.stories!,
+                card: { item in
+                    GenericCellView(
+                        id: item.ressourceId ?? "12345",
+                        viewModel: SeriesCellViewModel()
+                    )
+                }
+            ).padding(.bottom, 32)
 
         }.edgesIgnoringSafeArea(.top)
     }

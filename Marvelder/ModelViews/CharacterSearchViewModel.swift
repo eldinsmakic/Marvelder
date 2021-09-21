@@ -13,7 +13,7 @@ final class CharacterSearchViewModel: ObservableObject {
 
     let repo = CharacterRepositoryMarvel.shared
 
-    @Published var characters = [Fake.Character.character]
+    @Published var characters: [MarvelCharacter] = []
     @Published var isLoad = false
 
     var cancellationToken: AnyCancellable?

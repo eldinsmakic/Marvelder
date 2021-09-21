@@ -29,7 +29,7 @@ struct ComicSearchCellView: View {
             }
         }
         .padding([.leading, .trailing])
-        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.size.width/2 - (8 * 2))
+        .frame(maxWidth: .infinity, minHeight: UIScreen.main.bounds.size.width/2 - (8 * 2))
     }
 }
 

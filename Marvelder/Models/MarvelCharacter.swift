@@ -14,6 +14,9 @@ public struct MarvelComic: Codable, Identifiable {
     let variantDescription: String
     let description: String
     let thumbnail: MarvelImage?
+    let digitalId: Int? // The ID of the digital comic representation of this comic. Will be 0 if the comic is not available digitally.,
+    let issueNumber: Double? // The number of the issue in the series (will generally be 0 for collection formats).,
+    
 }
 
 typealias MarvelListT = Codable & Identifiable

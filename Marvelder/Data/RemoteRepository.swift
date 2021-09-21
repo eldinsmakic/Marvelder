@@ -21,8 +21,8 @@ public protocol RemoteRepositoryProtocol {
 
 public class RemoteRepositoryMarvel<T: Decodable >: RemoteRepositoryProtocol {
 
-    private let url: URL
-    private let path: String
+    let url: URL
+    let path: String
     private let baseURL = URL(string: "gateway.marvel.com")!
 
     private let privateKey  = "e801f6e96e40567e1d04399061056c0b370f5a52"
@@ -112,6 +112,27 @@ public class ComicRepositoryMarvel : RemoteRepositoryMarvel<MarvelComic> {
 
     private init() {
         super.init(path: "comics")
+    }
+
+    public override func getSearch(WithText text: String) -> AnyPublisher<[T], Error> {
+        var urlComponents = urlComponents
+        urlComponents.path = "/v1/public/\(self.path)"
+        let searchText = URLQueryItem(name: "nameStartsWith", value: text)
+
+        urlComponents.queryItems?.append(searchText)
+
+        return URLSession.shared.dataTaskPublisher(for: urlComponents.url!)
+            .tryMap({ (data: Data, response: URLResponse) in
+
+                guard let payload = try? JSON(data: data) else { throw URLError(.unknown)  }
+                guard let data = try? payload["data"]["results"].rawData() else { throw URLError(.unknown) }
+
+                let value = try JSONDecoder().decode([T].self, from: data)
+
+                return value
+            })
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }
 

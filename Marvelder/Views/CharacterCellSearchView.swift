@@ -42,7 +42,7 @@ struct BlurBG: UIViewRepresentable {
     }
 }
 
-struct CharacterCellView: View {
+struct CharacterCellSearchView: View {
 
     @State var character: MarvelCharacter
 
@@ -55,17 +55,13 @@ struct CharacterCellView: View {
                         .cornerRadius(10)
                         .frame(maxWidth: UIScreen.main.bounds.size.width - (8*2),
                                alignment: .center)
-//                    Rectangle()
-//                        .fill(Color.clear)
-//                        .frame(height: 10, alignment: .bottom)
                         Text(character.name ?? "no Name").font(.title2)
                             .bold()
                             .frame(maxWidth: UIScreen.main.bounds.size.width - (16*2))
                             .padding()
                             .background(BlurBG())
-
                 }
-            }.frame(width: UIScreen.main.bounds.size.width - (16*2), alignment: .center)
+            }.frame(width: UIScreen.main.bounds.size.width - (16*2), height: UIScreen.main.bounds.size.width, alignment: .center)
             Spacer()
         }
     }
@@ -74,7 +70,7 @@ struct CharacterCellView: View {
 
 struct CharacterCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterCellView(character: Fake.Character.character)
+        CharacterCellSearchView(character: Fake.Character.character)
             .previewLayout(.sizeThatFits)
     }
 }
