@@ -37,18 +37,6 @@ struct SearchBar: View {
                 self.isEditing = true
             }
 
-            if isEditing && !text.isEmpty {
-                Button(action: {
-                    self.isEditing = false
-                    self.text = ""
-
-                }) {
-                    Text("Cancel")
-                }
-                .padding(.trailing, 12)
-                .transition(.move(edge: .trailing))
-                .animation(.default)
-            }
         }
         .frame(width: UIScreen.main.bounds.size.width - (8*2))
         .overlay(
@@ -64,7 +52,7 @@ struct SearchBar: View {
                     }) {
                         Image(systemName: "multiply.circle.fill")
                             .foregroundColor(.gray)
-                            .padding(.trailing, text.isEmpty ? CGFloat(12.0) : CGFloat(105.0))
+                            .padding(.trailing, 14.0)
                     }
                 }
             }
